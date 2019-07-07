@@ -1,28 +1,25 @@
 package sc.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import sc.entity.CareContent;
 import sc.it.ContentDao;
 
 /**
- * Servlet implementation class ContentQueryConroller
+ * Servlet implementation class ContentDelectController
  */
-@WebServlet("/ContentQueryConroller")
-public class ContentQueryConroller extends HttpServlet {
+@WebServlet("/ContentDelectController")
+public class ContentDelectController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ContentQueryConroller() {
+    public ContentDelectController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,26 +29,14 @@ public class ContentQueryConroller extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
-		String id = request.getParameter("id");
-		String flag = request.getParameter("flag");
+		String cid = request.getParameter("cid");
+		System.out.println("cid="+cid);
 		ContentDao cd = new ContentDao();
+		cd.delect(cid);
+		request.getRequestDispatcher("/ContentQueryConroller").forward(request,response);
+
 		
-		if(id!=null&&!id.equals("")) {
-			CareContent c = cd.quaryByID(id);
-			System.out.println(c);
-			
-			ArrayList<CareContent> CareContents = new ArrayList<>();
-			CareContents.add(c);
-			request.setAttribute("CareContent", CareContents);
-		}else {
-			ArrayList<CareContent> CareContents = cd.queryAll();
-			request.setAttribute("CareContent", CareContents);
-		}
-		if(flag == null) {
-			request.getRequestDispatcher("/query.jsp").forward(request,response);
-		}else if(flag.contentEquals("update")){
-			request.getRequestDispatcher("/updateCareContent.jsp").forward(request,response);
-		}
+		
 		
 	}
 

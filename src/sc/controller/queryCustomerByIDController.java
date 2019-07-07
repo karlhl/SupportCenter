@@ -9,20 +9,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import sc.entity.CareContent;
-import sc.it.ContentDao;
+import sc.it.CustomerDao;
+import sc.entity.Customer;
+
 
 /**
- * Servlet implementation class ContentQueryConroller
+ * Servlet implementation class queryCustomerByIDController
  */
-@WebServlet("/ContentQueryConroller")
-public class ContentQueryConroller extends HttpServlet {
+@WebServlet("/queryCustomerByIDController")
+public class queryCustomerByIDController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ContentQueryConroller() {
+    public queryCustomerByIDController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,27 +33,12 @@ public class ContentQueryConroller extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
-		String id = request.getParameter("id");
-		String flag = request.getParameter("flag");
-		ContentDao cd = new ContentDao();
-		
-		if(id!=null&&!id.equals("")) {
-			CareContent c = cd.quaryByID(id);
-			System.out.println(c);
-			
-			ArrayList<CareContent> CareContents = new ArrayList<>();
-			CareContents.add(c);
-			request.setAttribute("CareContent", CareContents);
-		}else {
-			ArrayList<CareContent> CareContents = cd.queryAll();
-			request.setAttribute("CareContent", CareContents);
-		}
-		if(flag == null) {
-			request.getRequestDispatcher("/query.jsp").forward(request,response);
-		}else if(flag.contentEquals("update")){
-			request.getRequestDispatcher("/updateCareContent.jsp").forward(request,response);
-		}
-		
+		String ID = request.getParameter("ID");
+		CustomerDao customerDao = new CustomerDao();
+		ArrayList<Customer> customers = new ArrayList<>();
+		customers = customerDao.queryByID(Integer.valueOf(ID));
+		request.setAttribute("customer", customers);
+		request.getRequestDispatcher("/updateCustomer.jsp").forward(request, response);
 	}
 
 	/**

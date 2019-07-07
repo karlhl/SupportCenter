@@ -1,41 +1,41 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta charset="utf-8">
-<title>护理内容查询页面</title>
-	<script>
-		function checkdelete(url){
-			if(confirm("确认删除吗？")==true){
-				//delect
-				//发送请求
-				location.href=url;
-				
-			}else{
-				//cancle
-			}
+<title>查询用户</title>
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.slim.min.js"
+	integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+	crossorigin="anonymous"></script>
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css"
+	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+	crossorigin="anonymous">
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"
+	integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+	crossorigin="anonymous"></script>
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css"
+	integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+	crossorigin="anonymous">
+<script>
+	function checkDelete(url) { //带参函数,不用写类型
+		if (confirm("真的要删除吗？")) {
+			//delete
+			//模拟发送请求
+			location.href = url;
+		} else {
+			//cancle
 		}
-		
-		
-		
-	</script>
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	}
+</script>
 
-<!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
-<!-- 可选的 Bootstrap 主题文件（一般不用引入） -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-
-<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-	
 </head>
-
 <body>
-<nav class="navbar navbar-default">
+	<nav class="navbar navbar-default">
 		<div class="container-fluid">
 			<!-- Brand and toggle get grouped for better mobile display -->
 			<div class="navbar-header">
@@ -115,43 +115,59 @@
 		</div>
 		<!-- /.container-fluid -->
 	</nav>
-	
-	<form name="myform" action="http://localhost:8080/SupportCenter/ContentQueryConroller" method="get">
-		<input type="text" name="id" id="id" placeholder="请输入id">
-		<input type="submit" value="查询">
+	<!-- /.container-fluid --> </nav>
+	<form name="myform" action="/SupportCenter/queryCustomerController?"
+		method="get">
+		<input type="text" name="name" id="name" placeholder="请输入姓名" /> <input
+			type="submit" value="查询" />
 	</form>
-	<hr/>
-
-	
+	<hr />
 	<table class="table table-striped">
-		<caption>护理内容</caption>
+		<caption>客户信息表</caption>
 		<tr>
-			<td>id</td>
-			<td>编号</td>
-			<td>名称</td>
-			<td>价格</td>
-			<td>描述</td>
-			<td>是否增值状态</td>
-			<td>状态</td>
-			
+			<td>用户编号</td>
+			<td>姓名</td>
+			<td>年龄</td>
+			<td>性别</td>
+			<td>身份证号</td>
+			<td>房间号</td>
+			<td>楼房号</td>
+			<td>档案号</td>
+			<td>老人类型</td>
+			<td>入住时间</td>
+			<td>服务到期时间</td>
+			<td>联系电话</td>
+			<td>床号</td>
+			<td>身心状况</td>
+			<td>注意事项</td>
+			<td>出生日期</td>
+			<td>身高</td>
 		</tr>
-		<c:forEach items="${requestScope.CareContent}" var="s">
-		<tr>
-			<td>${s.id}</td>
-			<td>${s.serialNumber}</td>
-			<td>${s.nursingName}</td>
-			<td>${s.servicePrice}</td>
-			<td>${s.describe}</td>
-			<td><c:if test="${s.incrementFlag ==1}">是</c:if><c:if test="${s.incrementFlag !=1}">否</c:if></td>
-			<td><c:if test="${s.status==1}">启用</c:if><c:if test="${s.status!=1}">未启用</c:if>  </td>
-			<td><a href="/SupportCenter/ContentQueryConroller?id=${s.id}&flag=update">更新</a> <a href="javascript:checkdelete('/SupportCenter/ContentDelectController?cid=${s.id}')" >删除</a></td>
-			
-			
-		</tr>
+		<c:forEach items="${requestScope.customer}" var="s">
+			<tr>
+				<td>${s.ID}</td>
+				<td>${s.name}</td>
+				<td>${s.age}</td>
+				<td>${s.sex}</td>
+				<td>${s.IDCARD}</td>
+				<td>${s.roomID}</td>
+				<td>${s.bulidingID}</td>
+				<td>${s.recordID}</td>
+				<td>${s.elderType}</td>
+				<td>${s.checkInDate}</td>
+				<td>${s.expirationtionDate}</td>
+				<td>${s.contactTel}</td>
+				<td>${s.bedID}</td>
+				<td>${s.psychosomaticstate}</td>
+				<td>${s.attention}</td>
+				<td>${s.birthday}</td>
+				<td>${s.height}</td>
+				<td><a
+					href="/SupportCenter/queryCustomerByIDController?ID=${s.ID}">更新</a>
+					<a
+					href="javascript:checkDelete('/SupportCenter/deleteCustomerController?ID=${s.ID}')">删除</a></td>
+			</tr>
 		</c:forEach>
 	</table>
-
-	
-	
 </body>
 </html>

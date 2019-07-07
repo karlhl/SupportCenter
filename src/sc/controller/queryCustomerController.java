@@ -8,21 +8,21 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import sc.it.CustomerDao;
+import sc.entity.Customer;
 
-import sc.entity.CareContent;
-import sc.it.ContentDao;
 
 /**
- * Servlet implementation class ContentQueryConroller
+ * Servlet implementation class queryCustomerController
  */
-@WebServlet("/ContentQueryConroller")
-public class ContentQueryConroller extends HttpServlet {
+@WebServlet("/queryCustomerController")
+public class queryCustomerController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ContentQueryConroller() {
+    public queryCustomerController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,27 +32,25 @@ public class ContentQueryConroller extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
-		String id = request.getParameter("id");
-		String flag = request.getParameter("flag");
-		ContentDao cd = new ContentDao();
-		
-		if(id!=null&&!id.equals("")) {
-			CareContent c = cd.quaryByID(id);
-			System.out.println(c);
+	
+		String ID = request.getParameter("ID");
+		String name = request.getParameter("name");
+		System.out.println(name);
+		CustomerDao customerDao = new CustomerDao();
+		if(name != null && !(name.equals(""))){
+		ArrayList<Customer> customers = new ArrayList<>();
+		customers = customerDao.queryName(name);
+		for (Customer customer : customers) {
+			System.out.println(customer);
+		}
+		request.setAttribute("customer", customers);
+		}else{
+			//��ѯȫ����Ϣ
+			ArrayList<Customer> customers = customerDao.queryAll();
+			request.setAttribute("customer",customers);
 			
-			ArrayList<CareContent> CareContents = new ArrayList<>();
-			CareContents.add(c);
-			request.setAttribute("CareContent", CareContents);
-		}else {
-			ArrayList<CareContent> CareContents = cd.queryAll();
-			request.setAttribute("CareContent", CareContents);
 		}
-		if(flag == null) {
-			request.getRequestDispatcher("/query.jsp").forward(request,response);
-		}else if(flag.contentEquals("update")){
-			request.getRequestDispatcher("/updateCareContent.jsp").forward(request,response);
-		}
-		
+		request.getRequestDispatcher("/queryCustomer.jsp").forward(request, response);
 	}
 
 	/**

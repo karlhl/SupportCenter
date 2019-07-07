@@ -4,8 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
-import com.dr.entity.Student;
 
 import sc.it.DBUtil;
 
@@ -17,15 +17,23 @@ import sc.entity.CareContent;
 public class ContentDao {
 	public static void main(String[] args) {
 		ContentDao cd = new ContentDao();
-		CareContent c = new CareContent("3","003","遛弯洗漱","30","无",1,1);
+		//CareContent c = new CareContent("3","003","遛弯洗漱","30","无",1,1);
 		//增
 		//cd.insert(c);
 		
 		//删除
-		//cd.delect("7");
+		//cd.delect("6");
 		
 		//改
 		//cd.update(c);
+		
+		//查
+		
+//		CareContent cc = cd.quaryByID("1");
+//		System.out.println(cc);
+		
+//		System.out.println(cd.queryAll());
+		
 	}
 	public boolean insert(CareContent c) {
 		// mysql
@@ -109,24 +117,26 @@ public class ContentDao {
 		}
 	}
 	
-	public CareContent quaryByID(String id) {
+	public CareContent quaryByID(String cid) {
 		CareContent s = null;
 		Connection conn =  DBUtil.getConnection();
-		String sql = "select * from care_content where id = ?";
+		String sql = "select * from care_content where ID = ?";
 		try {
 			PreparedStatement ps = conn.prepareStatement(sql);
-			ps.setString(1, id);
+			ps.setString(1, cid);
 			
 			//对select这一类sql需要用到结果集
 			ResultSet rs= ps.executeQuery();
 			while(rs.next()) {
 				String id = rs.getString(1);
-				String name = rs.getString(2);
-				int age = rs.getInt(3);
-				String birthday  = rs.getString(4);
-				int cid = rs.getInt(5);
+				String serialNumber = rs.getString(2);
+				String nursingName = rs.getString(3);
+				String servicePrice  = rs.getString(4);
+				String describe = rs.getString(5);
+				int incrementFlag = rs.getInt(6);
+				int status = rs.getInt(7);
 				
-				s=new Student(id,name,age,birthday,cid);
+				s=new CareContent(id,serialNumber,nursingName,servicePrice,describe,incrementFlag,status);
 			}
 			
 		} catch (SQLException e) {
@@ -135,17 +145,39 @@ public class ContentDao {
 		}finally {
 			DBUtil.close(conn);
 		}
+		return s;
+	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	public ArrayList<CareContent> queryAll(){
+		ArrayList<CareContent> CareContents = new ArrayList<>();
+		Connection conn =  DBUtil.getConnection();
+		String sql = "select * from care_content";
+		try {
+			PreparedStatement ps = conn.prepareStatement(sql);
+
+			//对select这一类sql需要用到结果集
+			ResultSet rs= ps.executeQuery();
+			while(rs.next()) {
+				String id = rs.getString(1);
+				String serialNumber = rs.getString(2);
+				String nursingName = rs.getString(3);
+				String servicePrice  = rs.getString(4);
+				String describe = rs.getString(5);
+				int incrementFlag = rs.getInt(6);
+				int status = rs.getInt(7);
+				
+				CareContent c=new CareContent(id,serialNumber,nursingName,servicePrice,describe,incrementFlag,status);
+				CareContents.add(c);
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			DBUtil.close(conn);
+		}
+		return CareContents;
+	}
+
+
 }
