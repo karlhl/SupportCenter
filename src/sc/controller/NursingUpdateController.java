@@ -1,29 +1,26 @@
 package sc.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import sc.entity.CareContent;
 import sc.entity.NursingRecord;
 import sc.it.NursingDao;
 
 /**
- * Servlet implementation class NursingQueryController
+ * Servlet implementation class NursingUpdateController
  */
-@WebServlet("/NursingQueryController")
-public class NursingQueryController extends HttpServlet {
+@WebServlet("/NursingUpdateController")
+public class NursingUpdateController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public NursingQueryController() {
+    public NursingUpdateController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,29 +30,22 @@ public class NursingQueryController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
-		String cid = request.getParameter("id");
-		String flag = request.getParameter("flag");
-		System.out.println("cid="+cid);
+		String ID = request.getParameter("ID");
+		String CUSTOMER_ID = request.getParameter("CUSTOMER_ID");
+		String CONTENT_ID = request.getParameter("CONTENT_ID");
+		String NURSING_TIME = request.getParameter("NURSING_TIME");
+		String NURSING_COUNT = request.getParameter("NURSING_COUNT");
+		String STAFFINFO_ID = request.getParameter("STAFFINFO_ID");
+		String NURSING_ID = request.getParameter("NURSING_ID");
+		
+		System.out.println("连接成功");
 		NursingDao nd = new NursingDao();
+		NursingRecord nr = new NursingRecord(ID,CUSTOMER_ID,CONTENT_ID,NURSING_TIME,NURSING_COUNT,STAFFINFO_ID,NURSING_ID);
 		
-		if(cid!=null&&!cid.equals("")) {
-			ArrayList<NursingRecord> NursingRecords = nd.quaryByID(cid);
-			request.setAttribute("NursingRecord", NursingRecords);
-			
-		}else {
-			ArrayList<NursingRecord> NursingRecords = nd.queryAll();
-			request.setAttribute("NursingRecord", NursingRecords);
-			
-		}
-		if(flag == null) {
-			request.getRequestDispatcher("/queryNursingRecord.jsp").forward(request,response);
-		}else if(flag.contentEquals("update")){
-			request.getRequestDispatcher("/updateNursingRecord.jsp").forward(request,response);
-		}
+		nd.update(nr);
+		response.sendRedirect("/SupportCenter/NursingQueryController");//重定向，不传数据
 		
-	
-	
-	
+		
 	}
 
 	/**

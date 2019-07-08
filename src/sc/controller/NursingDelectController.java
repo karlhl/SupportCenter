@@ -1,29 +1,26 @@
 package sc.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import sc.entity.CareContent;
-import sc.entity.NursingRecord;
+import sc.it.ContentDao;
 import sc.it.NursingDao;
 
 /**
- * Servlet implementation class NursingQueryController
+ * Servlet implementation class NursingDelectController
  */
-@WebServlet("/NursingQueryController")
-public class NursingQueryController extends HttpServlet {
+@WebServlet("/NursingDelectController")
+public class NursingDelectController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public NursingQueryController() {
+    public NursingDelectController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,29 +30,11 @@ public class NursingQueryController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
-		String cid = request.getParameter("id");
-		String flag = request.getParameter("flag");
+		String cid = request.getParameter("cid");
 		System.out.println("cid="+cid);
 		NursingDao nd = new NursingDao();
-		
-		if(cid!=null&&!cid.equals("")) {
-			ArrayList<NursingRecord> NursingRecords = nd.quaryByID(cid);
-			request.setAttribute("NursingRecord", NursingRecords);
-			
-		}else {
-			ArrayList<NursingRecord> NursingRecords = nd.queryAll();
-			request.setAttribute("NursingRecord", NursingRecords);
-			
-		}
-		if(flag == null) {
-			request.getRequestDispatcher("/queryNursingRecord.jsp").forward(request,response);
-		}else if(flag.contentEquals("update")){
-			request.getRequestDispatcher("/updateNursingRecord.jsp").forward(request,response);
-		}
-		
-	
-	
-	
+		nd.delect(cid);
+		request.getRequestDispatcher("/NursingQueryController").forward(request,response);
 	}
 
 	/**
