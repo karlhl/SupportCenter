@@ -1,8 +1,11 @@
-<!doctype html>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8">
-<title>东软颐养中心</title>
+<meta charset="utf-8" />
+<title>护理内容增添页面</title>
+<!--可写在html中任何地方-->
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.slim.min.js"
@@ -27,7 +30,49 @@
 	integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
 	crossorigin="anonymous"></script>
 </head>
+<script>
+	//验证id
+	function checkid() {
+		var sn = document.getElementById("ID").value;
+		var d = document.getElementById("errorMessage");
+		if (sn == "") {
+			d.innerText = "ID不能为空！";
+			return false;
+		} else {
+			return true;
+		}
+	}
+	//验证 编号
+	function checkkid() {
+		var num = document.getElementById("CUSTOMER_ID").value;
+		if (num == "") {
+			var d = document.getElementById("errorMessage");
+			d.innerText = "客户ID不能为空！";
+			return false;
+		} else {
+			return true;
+		}
 
+	}
+	//验证名称非空
+	function checkName() {
+		var name = document.getElementById("CONTENT_ID").value;
+		if (name == "") {
+			var d = document.getElementById("errorMessage");
+			d.innerText = "护理项目ID不能为空！";
+			return false;
+		} else {
+			return true;
+		}
+
+	}
+	function checkform() {
+		if (checkid() && checkkid() && checkName()) {
+			document.myform.submit();
+		}
+	}
+</script>
+</head>
 <body>
 	<nav class="navbar navbar-default">
 		<div class="container-fluid">
@@ -68,16 +113,8 @@
 						<ul class="dropdown-menu">
 							<li><a href="/SupportCenter/addCareContent.jsp">增加护理内容</a></li>
 							<li><a href="/SupportCenter/query.jsp">查询护理内容</a></li>
-						</ul>
-					</li>
-					<li class="dropdown"><a href="#" class="dropdown-toggle"
-						data-toggle="dropdown" role="button" aria-haspopup="true"
-						aria-expanded="false">护理记录 <span class="caret"></span></a>
-						<ul class="dropdown-menu">
-							<li><a href="/SupportCenter/addNursingRecord.jsp">增加护理记录</a></li>
-							<li><a href="/SupportCenter/queryNursingRecord.jsp">查询护理记录</a></li>
-						</ul>
-					</li>
+
+						</ul></li>
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown" role="button" aria-haspopup="true"
 						aria-expanded="false">膳食日历 <span class="caret"></span></a>
@@ -117,57 +154,24 @@
 		</div>
 		<!-- /.container-fluid -->
 	</nav>
-
-	<!-- 轮播图 -->
-	<div class="container-fluid">
-		<div class="row-fluid">
-			<div class="span12">
-				<div class="carousel slide" id="carousel-562639">
-					<ol class="carousel-indicators">
-						<li class="active" data-slide-to="0"
-							data-target="#carousel-562639"></li>
-						<li data-slide-to="1" data-target="#carousel-562639"></li>
-						<li data-slide-to="2" data-target="#carousel-562639"></li>
-					</ol>
-					<div class="carousel-inner">
-						<div class="item active">
-							<img alt="" src="img/1a.jpg" />
-							<div class="carousel-caption">
-								<h4>专业的人员</h4>
-								<p>可以保证每一个老人的安全</p>
-							</div>
-						</div>
-						<div class="item">
-							<img alt="" src="img/2a.jpg"/>
-							<div class="carousel-caption">
-								<h4>优良的环境</h4>
-								<p>
-									提供非常好的环境
-								</p>
-							</div>
-						</div>
-						<div class="item">
-							<img alt="" src="img/3a.jpg"/>
-							<div class="carousel-caption">
-								<h4>娱乐活动</h4>
-								<p>
-									经常组织老大妈联谊
-								</p>
-							</div>
-						</div>
-					</div>
-					<a data-slide="prev" href="#carousel-562639"
-						class="left carousel-control">‹</a> <a data-slide="next"
-						href="#carousel-562639" class="right carousel-control">›</a>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<h4>
-		本项目是根据颐养中心的工作流程进行充分调研和整理出来的，描述最终用户在本系统中对于老人在办理入住、退住、膳食管理、护理管理等处理流程和业务需求的文档。本文档的主要目的一方面是指导学员了解最终的业务需求，另一方面是作为后续开发设计的业务需求指导文档。
-	</h4>
-
-
+	<h1 class="color">护理记录添加界面</h1>
+	<!--表单标签-->
+	<div style="color: #FF0000; font-size: 36px; font-weight: bold;"
+		id="errorMessage">${requestScope.msg}</div>
+	<form name="myform" action="/SupportCenter/NursingAddController"
+		method="get">
+		<!--表单元素-->
+		ID:<input type="text" name="ID" id="ID" /><br /> 
+		客户ID:<input type="text" name="CUSTOMER_ID" id="CUSTOMER_ID" /><br /> 
+		护理项目ID:<input type="text" name="CONTENT_ID" id="CONTENT_ID"/><br /> 
+		护理时间:<input type="date" name="NURSING_TIME" /><br /> 
+		护理数量:<input type="text" name="NURSING_COUNT" /><br /> 
+		护理人员ID:<input type="text" name="STAFFINFO_ID" /><br /> 
+		护理安排ID:<input type="text" name="NURSING_ID" /><br /> 
+		
+		 <input type="button" value="测试" onclick="checkcid()" /> <input
+			type="button" value="添加" onclick="checkform()" /> <input
+			type="reset" value="重置" />
+	</form>
 </body>
 </html>

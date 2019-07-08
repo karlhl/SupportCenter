@@ -15,7 +15,7 @@ public class NursingDao {
 		NursingDao nd = new NursingDao();
 		NursingRecord n = new NursingRecord("4","4","3","2019-07-08","1","1","1");
 		
-//		System.out.println(nd.queryAll());
+		System.out.println(nd.quaryByID("1"));
 	}
 	
 	
@@ -104,14 +104,13 @@ public class NursingDao {
 		}
 	}
 
-	public NursingRecord quaryByID(String id) {
-		NursingRecord n = null;
+	public ArrayList<NursingRecord> quaryByID(String id) {
+		ArrayList<NursingRecord> NursingRecords = new ArrayList<>();
 		Connection conn =  DBUtil.getConnection();
-		String sql = "select * from nursing_record where ID = ?";
+		String sql = "select * from nursing_record where CUSTOMER_ID = ?";
 		try {
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setString(1, id);
-			
 			//对select这一类sql需要用到结果集
 			ResultSet rs= ps.executeQuery();
 			while(rs.next()) {
@@ -123,8 +122,8 @@ public class NursingDao {
 				String STAFFINFO_ID  = rs.getString(6);
 				String NURSING_ID  = rs.getString(7);
 				
-				
-				n=new NursingRecord(ID,CUSTOMER_ID,CONTENT_ID,NURSING_TIME,NURSING_COUNT,STAFFINFO_ID,NURSING_ID);
+				NursingRecord n=new NursingRecord(ID,CUSTOMER_ID,CONTENT_ID,NURSING_TIME,NURSING_COUNT,STAFFINFO_ID,NURSING_ID);
+				NursingRecords.add(n);
 			}
 			
 		} catch (SQLException e) {
@@ -133,7 +132,7 @@ public class NursingDao {
 		}finally {
 			DBUtil.close(conn);
 		}
-		return n;
+		return NursingRecords;
 	}
 	
 	public ArrayList<NursingRecord> queryAll(){
