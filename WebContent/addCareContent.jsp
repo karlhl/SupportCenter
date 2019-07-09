@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+	
 <!DOCTYPE html>
 <html>
 <head>
@@ -175,7 +177,20 @@
 			<option value="1">启用</option>
 			<option value="2">停用</option>
 		</select> <br/>
-		护理级别:<input type="text" name="levelId"  /><br />
+		
+		护理级别: <select name="levelId" >
+					<c:forEach items = "${requestScope.CareLevel}" var="c">
+						<option value = "${c.ID }">${c.LEVEL_NAME }</option>
+					
+					
+					</c:forEach>
+		
+		</select><br />
+		
+		
+		
+		
+		
 		
 		<input type="button" value="测试" onclick="checkcid()" /> <input
 			type="button" value="添加" onclick="checkform()" /> <input

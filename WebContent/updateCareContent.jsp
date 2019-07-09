@@ -180,7 +180,13 @@
 							<option value = "1"> 启用</option>
 							<option value = "2">停用</option>
 						</select><br/>
-				护理级别:<input type="text" name="levelId" value="${requestScope.CareContent[0].levelId}" /><br />
+				护理级别:<select name="levelId" value="${requestScope.CareContent[0].levelId}" >
+					<option value = "1">高</option>
+					<option value = "2">中</option>
+					<option value = "3">低</option>
+				</select><br/>
+				
+				<!-- 护理级别:<input type="text" name="levelId" value="${requestScope.CareContent[0].levelId}" /><br /> -->
 				<input type="button" value="测试" onclick="checkcid()" />
 				<input type="button" value="更新" onclick="checkform()" />
 				<input type="reset" value="重置" />
