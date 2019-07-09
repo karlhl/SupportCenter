@@ -37,8 +37,9 @@ public class ContentAddController extends HttpServlet {
 		String describe = request.getParameter("describe");
 		String incrementFlag = request.getParameter("incrementFlag");
 		String status = request.getParameter("status");
+		String levelId = request.getParameter("levelId");
 		System.out.println("接收到信息");
-		CareContent c = new CareContent(cid,serialNumber,nursingName,servicePrice,describe,Integer.parseInt(incrementFlag),Integer.parseInt(status));
+		CareContent c = new CareContent(cid,serialNumber,nursingName,servicePrice,describe,Integer.parseInt(incrementFlag),Integer.parseInt(status),Integer.parseInt(levelId));
 		ContentDao cd = new ContentDao();
 		boolean result = cd.insert(c);
 		String message = null;

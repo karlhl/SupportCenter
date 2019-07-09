@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>护理内容查询页面</title>
+<title>护理等级查询页面</title>
 	<script>
 		function checkdelete(url){
 			if(confirm("确认删除吗？")==true){
@@ -116,7 +116,7 @@
 		<!-- /.container-fluid -->
 	</nav>
 	
-	<form name="myform" action="http://localhost:8080/SupportCenter/ContentQueryConroller" method="get">
+	<form name="myform" action="http://localhost:8080/SupportCenter/LevelQueryController" method="get">
 		<input type="text" name="id" id="id" placeholder="请输入id">
 		<input type="submit" value="查询">
 	</form>
@@ -124,28 +124,20 @@
 
 	
 	<table class="table table-striped">
-		<caption>护理内容</caption>
+		<caption>护理等级查询页面</caption>
 		<tr>
-			<td>id</td>
-			<td>编号</td>
-			<td>名称</td>
-			<td>价格</td>
-			<td>描述</td>
-			<td>是否增值状态</td>
-			<td>状态</td>
-			<td>护理级别</td>
+			<td>ID</td>
+			<td>护理等级名称</td>
+			<td>护理等级状态</td>
+			
 		</tr>
-		<c:forEach items="${requestScope.CareContent}" var="s">
+		<c:forEach items="${requestScope.CareLevel}" var="s">
 		<tr>
-			<td>${s.id}</td>
-			<td>${s.serialNumber}</td>
-			<td>${s.nursingName}</td>
-			<td>${s.servicePrice}</td>
-			<td>${s.describe}</td>
-			<td><c:if test="${s.incrementFlag ==1}">是</c:if><c:if test="${s.incrementFlag !=1}">否</c:if></td>
-			<td><c:if test="${s.status==1}">启用</c:if><c:if test="${s.status!=1}">未启用</c:if>  </td>
-			<td>${s.levelId}</td>
-			<td><a href="/SupportCenter/ContentQueryConroller?id=${s.id}&flag=update">更新</a> <a href="javascript:checkdelete('/SupportCenter/ContentDelectController?cid=${s.id}')" >删除</a></td>
+			<td>${s.ID}</td>
+			<td>${s.LEVEL_NAME}</td>
+			<td><c:if test="${s.LEVEL_STATUS ==1}">是</c:if><c:if test="${s.LEVEL_STATUS !=1}">否</c:if></td>
+			
+			<td><a href="/SupportCenter/LevelQueryController?id=${s.ID}&flag=update">更新</a> <a href="javascript:checkdelete('/SupportCenter/LevelDelectController?cid=${s.ID}')" >删除</a></td>
 			
 			
 		</tr>

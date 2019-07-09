@@ -41,7 +41,7 @@ public class ContentDao {
 		try {
 			conn = DBUtil.getConnection();
 			// 
-			String sql = "insert into care_content values (?,?,?,?,?,?,?)";
+			String sql = "insert into care_content values (?,?,?,?,?,?,?,?)";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			//
 			ps.setString(1, c.getId());
@@ -51,6 +51,7 @@ public class ContentDao {
 			ps.setString(5,c.getDescribe() );
 			ps.setInt(6, c.getIncrementFlag());
 			ps.setInt(7,c.getStatus() );
+			ps.setInt(8, c.getLevelId());
 			//
 			ps.executeUpdate();
 			return true;
@@ -95,7 +96,7 @@ public class ContentDao {
 			conn = DBUtil.getConnection();
 			System.out.println(conn);
 			// 3.sql语句
-			String sql = "UPDATE care_content set SERIAL_NUMBER=?,NURSING_NAME=?,SERVICE_PRICE=?,DESCRIBE2=?,INCREMENT_FLAG=?,STATUS2=? where ID=?;";
+			String sql = "UPDATE care_content set SERIAL_NUMBER=?,NURSING_NAME=?,SERVICE_PRICE=?,DESCRIBE2=?,INCREMENT_FLAG=?,STATUS2=?,LEVEL_ID=? where ID=?;";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			// 4.指定sql语句中的占位符
 			ps.setString(1,c.getSerialNumber());
@@ -104,7 +105,8 @@ public class ContentDao {
 			ps.setString(4,c.getDescribe());
 			ps.setInt(5,c.getIncrementFlag());
 			ps.setInt(6,c.getStatus());
-			ps.setString(7, c.getId());
+			ps.setString(8, c.getId());
+			ps.setInt(7, c.getLevelId());
 			// 执行
 			ps.executeUpdate();
 
@@ -135,8 +137,9 @@ public class ContentDao {
 				String describe = rs.getString(5);
 				int incrementFlag = rs.getInt(6);
 				int status = rs.getInt(7);
+				int levelId = rs.getInt(8);
 				
-				s=new CareContent(id,serialNumber,nursingName,servicePrice,describe,incrementFlag,status);
+				s=new CareContent(id,serialNumber,nursingName,servicePrice,describe,incrementFlag,status,levelId);
 			}
 			
 		} catch (SQLException e) {
@@ -165,8 +168,8 @@ public class ContentDao {
 				String describe = rs.getString(5);
 				int incrementFlag = rs.getInt(6);
 				int status = rs.getInt(7);
-				
-				CareContent c=new CareContent(id,serialNumber,nursingName,servicePrice,describe,incrementFlag,status);
+				int levelId = rs.getInt(8);
+				CareContent c=new CareContent(id,serialNumber,nursingName,servicePrice,describe,incrementFlag,status,levelId);
 				CareContents.add(c);
 			}
 			

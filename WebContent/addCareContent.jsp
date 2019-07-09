@@ -3,6 +3,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.slim.min.js"
+	integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+	crossorigin="anonymous"></script>
 <meta charset="utf-8" />
 <title>护理内容增添页面</title>
 <!--可写在html中任何地方-->
@@ -171,7 +174,10 @@
 		</select><br /> 是否启用:<select name="status">
 			<option value="1">启用</option>
 			<option value="2">停用</option>
-		</select> <input type="button" value="测试" onclick="checkcid()" /> <input
+		</select> <br/>
+		护理级别:<input type="text" name="levelId"  /><br />
+		
+		<input type="button" value="测试" onclick="checkcid()" /> <input
 			type="button" value="添加" onclick="checkform()" /> <input
 			type="reset" value="重置" />
 	</form>

@@ -8,6 +8,29 @@ public class CareContent {
 	private String describe;//描述
 	private int incrementFlag;//是否增值，1 是 2否
 	private int status;//״̬状态1启用，2停用
+	private int levelId;//护理级别
+	@Override
+	public String toString() {
+		return "CareContent [id=" + id + ", serialNumber=" + serialNumber + ", nursingName=" + nursingName
+				+ ", servicePrice=" + servicePrice + ", describe=" + describe + ", incrementFlag=" + incrementFlag
+				+ ", status=" + status + ", levelId=" + levelId + "]";
+	}
+	public CareContent(String id, String serialNumber, String nursingName, String servicePrice, String describe,
+			int incrementFlag, int status, int levelId) {
+		super();
+		this.id = id;
+		this.serialNumber = serialNumber;
+		this.nursingName = nursingName;
+		this.servicePrice = servicePrice;
+		this.describe = describe;
+		this.incrementFlag = incrementFlag;
+		this.status = status;
+		this.levelId = levelId;
+	}
+	public CareContent() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 	public String getId() {
 		return id;
 	}
@@ -50,27 +73,11 @@ public class CareContent {
 	public void setStatus(int status) {
 		this.status = status;
 	}
-	public CareContent(String id, String serialNumber, String nursingName, String servicePrice, String describe,
-			int incrementFlag, int status) {
-		super();
-		this.id = id;
-		this.serialNumber = serialNumber;
-		this.nursingName = nursingName;
-		this.servicePrice = servicePrice;
-		this.describe = describe;
-		this.incrementFlag = incrementFlag;
-		this.status = status;
+	public int getLevelId() {
+		return levelId;
 	}
-	public CareContent() {
-		super();
-		// TODO Auto-generated constructor stub
+	public void setLevelId(int levelId) {
+		this.levelId = levelId;
 	}
-	@Override
-	public String toString() {
-		return "CareContent [id=" + id + ", serialNumber=" + serialNumber + ", nursingName=" + nursingName
-				+ ", servicePrice=" + servicePrice + ", describe=" + describe + ", incrementFlag=" + incrementFlag
-				+ ", status=" + status + "]";
-	}
-	
 	
 }

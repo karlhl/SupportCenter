@@ -3,6 +3,32 @@
 <!DOCTYPE html>
 <html>
     <head>
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.slim.min.js"
+	integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+	crossorigin="anonymous"></script>
+    <meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.slim.min.js"
+	integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+	crossorigin="anonymous"></script>
+
+<!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css"
+	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+	crossorigin="anonymous">
+
+<!-- 可选的 Bootstrap 主题文件（一般不用引入） -->
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css"
+	integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+	crossorigin="anonymous">
+
+<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"
+	integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+	crossorigin="anonymous"></script>
         <meta charset="utf-8"/>
         <title>护理内容更新页面</title>
 		<!--可写在html中任何地方-->
@@ -134,7 +160,7 @@
 		</div>
 		<!-- /.container-fluid -->
 	</nav>
-            <h1 class="color">护理内容添加界面</h1>
+            <h1 class="color">护理内容更新页面</h1>
             <!--表单标签-->
 			<div style="color: #FF0000; font-size: 36px; font-weight: bold;" id="errorMessage">
 				${requestScope.msg}
@@ -153,7 +179,8 @@
 				是否启用:<select name="status">
 							<option value = "1"> 启用</option>
 							<option value = "2">停用</option>
-						</select>
+						</select><br/>
+				护理级别:<input type="text" name="levelId" value="${requestScope.CareContent[0].levelId}" /><br />
 				<input type="button" value="测试" onclick="checkcid()" />
 				<input type="button" value="更新" onclick="checkform()" />
 				<input type="reset" value="重置" />
