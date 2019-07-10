@@ -91,22 +91,25 @@
 						data-toggle="dropdown" role="button" aria-haspopup="true"
 						aria-expanded="false">护理级别 <span class="caret"></span></a>
 						<ul class="dropdown-menu">
-							<li><a href="#">Action</a></li>
-							<li><a href="#">Another action</a></li>
-							<li><a href="#">Something else here</a></li>
-							<li role="separator" class="divider"></li>
-							<li><a href="#">Separated link</a></li>
-							<li role="separator" class="divider"></li>
-							<li><a href="#">One more separated link</a></li>
+							<li><a href="/SupportCenter/addCareLevel.jsp">添加护理级别</a></li>
+							<li><a href="/SupportCenter/queryCareLevel.jsp">查询护理级别</a></li>
 						</ul></li>
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown" role="button" aria-haspopup="true"
 						aria-expanded="false">护理内容 <span class="caret"></span></a>
 						<ul class="dropdown-menu">
-							<li><a href="/SupportCenter/addCareContent.jsp">增加护理内容</a></li>
+							<li><a href="/SupportCenter//LevelQueryAddController">增加护理内容</a></li>
 							<li><a href="/SupportCenter/query.jsp">查询护理内容</a></li>
-
-						</ul></li>
+						</ul>
+					</li>
+					<li class="dropdown"><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown" role="button" aria-haspopup="true"
+						aria-expanded="false">护理记录 <span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="/SupportCenter/addNursingRecord.jsp">增加护理记录</a></li>
+							<li><a href="/SupportCenter/queryNursingRecord.jsp">查询护理记录</a></li>
+						</ul>
+					</li>
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown" role="button" aria-haspopup="true"
 						aria-expanded="false">膳食日历 <span class="caret"></span></a>
@@ -123,10 +126,37 @@
 						data-toggle="dropdown" role="button" aria-haspopup="true"
 						aria-expanded="false">入户登记 <span class="caret"></span></a>
 						<ul class="dropdown-menu">
-							<li><a href="/SupportCenter/AddCustomer.jsp">添加入户登记</a></li>
-							<li><a href="/SupportCenter/queryCustomer.jsp">查询入户登记</a></li>
-						</ul></li>
-				</ul>
+							<li><a href="/SupportCenter/AddCustomer.jsp">添加入住登记</a></li>
+							<li><a href="/SupportCenter/queryCustomer.jsp">查询入住登记</a></li>
+						</ul>
+					</li>
+					<li class="dropdown"><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown" role="button" aria-haspopup="true"
+						aria-expanded="false">退住登记 <span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="/SupportCenter/queryCustomer2.jsp">办理退住登记</a></li>
+							<li><a href="/SupportCenter/addRetreatCustomer.jsp">添加退住房登记</a></li>
+							<li><a href="/SupportCenter/queryRetreatCustomer.jsp">查询退住登记</a></li>
+						</ul>
+					</li>
+					<li class="dropdown"><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown" role="button" aria-haspopup="true"
+						aria-expanded="false">外出登记 <span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="/SupportCenter/queryCustomer3.jsp">办理外出登记</a></li>
+							<li><a href="/SupportCenter/addOutCustomer.jsp">添加外出登记</a></li>
+							<li><a href="/SupportCenter/queryOutCustomer.jsp">查询外出登记</a></li>
+						</ul>
+					</li>
+					
+					
+					
+					
+					
+					
+					
+					
+					</ul>
 
 				<ul class="nav navbar-nav navbar-right">
 

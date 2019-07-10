@@ -1,34 +1,32 @@
-<!doctype html>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix = "c" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<head>
-<meta charset="utf-8">
-<title>东软颐养中心</title>
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.slim.min.js"
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.slim.min.js"
 	integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
 	crossorigin="anonymous"></script>
-
-<!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css"
-	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-	crossorigin="anonymous">
-
-<!-- 可选的 Bootstrap 主题文件（一般不用引入） -->
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css"
-	integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
-	crossorigin="anonymous">
-
-<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"
-	integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-	crossorigin="anonymous"></script>
-</head>
-
-<body>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+	
+	<script>
+		function checkDelete(url){  //带参函数,不用写类型
+			if(confirm("真的要删除吗？")){
+				//delete
+				//模拟发送请求
+				location.href = url;
+			}else{
+				//cancle
+			}
+		}
+	</script>
+	
+	</head>
+	<body>
 	<nav class="navbar navbar-default">
 		<div class="container-fluid">
 			<!-- Brand and toggle get grouped for better mobile display -->
@@ -139,57 +137,32 @@
 		</div>
 		<!-- /.container-fluid -->
 	</nav>
-
-	<!-- 轮播图 -->
-	<div class="container-fluid">
-		<div class="row-fluid">
-			<div class="span12">
-				<div class="carousel slide" id="carousel-562639">
-					<ol class="carousel-indicators">
-						<li class="active" data-slide-to="0"
-							data-target="#carousel-562639"></li>
-						<li data-slide-to="1" data-target="#carousel-562639"></li>
-						<li data-slide-to="2" data-target="#carousel-562639"></li>
-					</ol>
-					<div class="carousel-inner">
-						<div class="item active">
-							<img alt="" src="img/1a.jpg" />
-							<div class="carousel-caption">
-								<h4>专业的人员</h4>
-								<p>可以保证每一个老人的安全</p>
-							</div>
-						</div>
-						<div class="item">
-							<img alt="" src="img/2a.jpg"/>
-							<div class="carousel-caption">
-								<h4>优良的环境</h4>
-								<p>
-									提供非常好的环境
-								</p>
-							</div>
-						</div>
-						<div class="item">
-							<img alt="" src="img/3a.jpg"/>
-							<div class="carousel-caption">
-								<h4>娱乐活动</h4>
-								<p>
-									经常组织老大妈联谊
-								</p>
-							</div>
-						</div>
-					</div>
-					<a data-slide="prev" href="#carousel-562639"
-						class="left carousel-control">‹</a> <a data-slide="next"
-						href="#carousel-562639" class="right carousel-control">›</a>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<h4>
-		本项目是根据颐养中心的工作流程进行充分调研和整理出来的，描述最终用户在本系统中对于老人在办理入住、退住、膳食管理、护理管理等处理流程和业务需求的文档。本文档的主要目的一方面是指导学员了解最终的业务需求，另一方面是作为后续开发设计的业务需求指导文档。
-	</h4>
-
-
-</body>
+		<form name="myform" action="/SupportCenter/QueryRetreatCustomerController?" method="get">
+			<input type="text" name="name" id = "name" placeholder="输入姓名" />
+			<input type="submit" value="查询"/>
+		</form>
+		<hr />
+		<table class="table table-striped">
+			<caption>退宿信息表</caption>
+			<tr>
+				<td>退宿编号</td>
+				<td>用户编号</td>
+				<td>退宿时间</td>
+				<td>退宿原因</td>
+				<td>备注</td>
+				<td>申请时间</td>
+			</tr>
+			<c:forEach items = "${requestScope.retreatCustomers}" var="s">
+			<tr>
+				<td>${s.ID}</td>
+				<td>${s.customerID}</td>
+				<td>${s.retreatTime}</td>
+				<td>${s.retreatReason}</td>
+				<td>${s.describe2}</td>
+				<td>${s.askTime}</td>
+				<td><a href="/SupportCenter/QueryRetreatCustomerByIDController?ID=${s.ID}"> 更新</a> <a href="javascript:checkDelete('/SupportCenter/DeleteRetreatCustomerController?ID=${s.ID}')">删除</a></td>
+			</tr>
+			</c:forEach>
+		</table>
+	</body>
 </html>
